@@ -1,11 +1,24 @@
-import scrapy
 from urllib.parse import urljoin
+
+import scrapy
+
 
 class BuctSpider(scrapy.Spider):
     name = "buct"
     allowed_domains = ["buct.edu.cn"]
     base_url = "https://news.buct.edu.cn"
     start_urls = ["https://news.buct.edu.cn/main.htm"]
+
+    custom_settings = {
+        "FEEDS": {
+            "buct_output.csv": {
+                "format": "csv",
+                "encoding": "utf-8-sig",
+                "fields": ["title", "conclusion", "url", "channelNames", "publishTime", "content"],
+                "overwrite": True,
+            }
+        }
+    }
 
     def parse(self, response):
         self.logger.info("Parsing %s", response.url)

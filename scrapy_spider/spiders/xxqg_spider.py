@@ -1,15 +1,28 @@
-import scrapy
 import json
-import time
 import re
-from urllib.parse import urlparse, parse_qs
+import time
 from datetime import datetime, timedelta
+from urllib.parse import urlparse, parse_qs
+
+import scrapy
+
 
 class ExampleSpider(scrapy.Spider):
     name = "example"
     allowed_domains = ["xuexi.cn"]
     tm = int(time.time())
     start_urls = [f"https://www.xuexi.cn/lgdata/1jscb6pu1n2.json?_st=29563600&js_v={tm}"]
+
+    custom_settings = {
+        "FEEDS": {
+            "xxqg_output.csv": {
+                "format": "csv",
+                "encoding": "utf-8-sig",
+                "fields": ["title", "publishTime", "showSource", "channelNames", "url", "item_id", "content"],
+                "overwrite": True,
+            }
+        }
+    }
 
     def parse(self, response):
         self.logger.info("Parsing %s", response.url)

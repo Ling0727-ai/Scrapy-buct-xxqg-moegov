@@ -1,11 +1,24 @@
-import scrapy
 from urllib.parse import urljoin
+
+import scrapy
+
 
 class MoegovSpider(scrapy.Spider):
     name = "moegov"
     allowed_domains = ["moe.gov.cn"]
     base_url = "http://www.moe.gov.cn/"
     start_urls = ["http://www.moe.gov.cn/jyb_sy/sy_jyyw/"]
+
+    custom_settings = {
+        "FEEDS": {
+            "moegov_output.csv": {
+                "format": "csv",
+                "encoding": "utf-8-sig",
+                "fields": ["title", "url", "publishTime", "content"],
+                "overwrite": True,
+            }
+        }
+    }
 
     def parse(self, response):
         self.logger.info("Parsing %s", response.url)

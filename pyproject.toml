@@ -8,5 +8,4 @@ dependencies = [
     "scrapy>=2.14.2",
     "scrapyd>=1.6.0",
     "scrapyd-client>=2.0.3",
-    "scrapyspidermiddleware",
 ]

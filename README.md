@@ -77,7 +77,7 @@ scrapyd
 ```ini
 [deploy]
 url = http://localhost:6800/
-project = scrapy_spider
+project = scrapy_buct_xxqg_moegov
 ```
 
 #### 3. 部署项目
@@ -117,12 +117,12 @@ curl http://localhost:6800/listjobs.json?project=scrapy_spider
 
 **输出字段**:
 
-| 字段 | 说明 |
-|------|------|
-| title | 新闻标题 |
-| url | 新闻链接 |
-| publishTime | 发布时间 |
-| content | 新闻正文内容 |
+| 字段          | 说明     |
+|-------------|--------|
+| title       | 新闻标题   |
+| url         | 新闻链接   |
+| publishTime | 发布时间   |
+| content     | 新闻正文内容 |
 
 **输出文件**: `moegov_output.csv`
 
